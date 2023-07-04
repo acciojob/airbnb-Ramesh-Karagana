@@ -4,7 +4,7 @@ import com.driver.model.Booking;
 import com.driver.model.Facility;
 import com.driver.model.Hotel;
 import com.driver.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.driver.Services.HotelManagementService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,10 +21,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/hotel")
 public class HotelManagementController {
-
-    @Autowired
-    HotelManagementController hotelManagementService;
-    ///HotelManagementService hotelManagementService = new HotelManagementService();
+    HotelManagementService hotelManagementService = new HotelManagementService();
     @PostMapping("/add-hotel")
     public String addHotel(@RequestBody Hotel hotel){
 
@@ -84,7 +81,7 @@ public class HotelManagementController {
         //If the hotel is already having that facility ignore that facility otherwise add that facility in the hotelDb
         //return the final updated List of facilities and also update that in your hotelDb
         //Note that newFacilities can also have duplicate facilities possible
-        return hotelManagementService.updateFacilities(newFacilities,hotelName);
+        return hotelManagementService.updateFacility(newFacilities,hotelName);
     }
 
 
